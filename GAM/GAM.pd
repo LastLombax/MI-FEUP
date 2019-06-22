@@ -1,0 +1,234 @@
+#N canvas 395 111 1920 976 10;
+#X declare -path lib;
+#X obj 21 3 gemhead;
+#X obj 34 28 bng 25 250 50 0 empty empty empty 0 -6 0 8 -262144 -1
+-1;
+#X obj 34 55 openpanel;
+#X msg 34 74 open \$1;
+#X msg 34 110 auto \$1;
+#X obj 34 93 tgl 15 0 empty empty empty 0 -6 0 8 -262144 -1 -1 1 1
+;
+#N canvas 18 78 928 614 :: 0;
+#X text 24 16 the format [pix_film] is able to decode depends on the
+system you are running Gem.;
+#X text 33 52 basically Gem's decoding capabilities are handled by
+plugins. You should see \, which plugins are loaded \, when instantiating
+the first [pix_film] object: a line "[pix_film]: foo support" means
+\, that the 'foo' plugin has been loaded.;
+#X text 453 50 you can add a plugin to your system by simply copying
+the plugin-binary called "gem_filmNAME.dll" (or gem_filmNAME.so if
+you are on a unix-like system) into your Gem-directory (where you find
+the Gem-binary \, e.g. Gem.dll);
+#X text 456 103 if you want to remove a plugin (e.g. because you are
+not satisfied with the decoding quality of because it is unstable)
+\, you can simply remove the corresponding gem_filmNAME.dll file from
+your Gem-directory.;
+#X text 35 123 which media can be decoded \, depends on the installed
+plugins and on the codecs you have installed on your system.;
+#X obj 45 248 cnv 15 200 15 empty empty empty 20 12 0 14 -203904 -66577
+0;
+#X obj 45 303 cnv 15 200 15 empty empty empty 20 12 0 14 -203904 -66577
+0;
+#X obj 445 248 cnv 15 200 15 empty empty empty 20 12 0 14 -203904 -66577
+0;
+#X text 449 249 Gmerlin (gem_filmGMERLIN);
+#X text 49 249 QuickTime (gem_filmQT);
+#X text 73 262 available on OS-X (PPC and i386 \, but not 64bit!) and
+W32;
+#X text 73 277 should be able to decode any QuickTime MOV \, and probably
+a lot more;
+#X text 49 304 DirectShow (gem_filmDS);
+#X text 73 317 available on W32;
+#X text 73 331 should be able to decode anything for which you have
+a DirectShow filter installed;
+#X text 50 365 AVI (gem_filmAVI);
+#X text 73 380 available on W32;
+#X text 73 394 this uses the old (pre-XP) W32-API for decoding movies.
+Support for newer codecs is probably limited;
+#X text 50 424 AVIPLAY (gem_filmAVIPLAY);
+#X text 73 439 available on linux;
+#X text 74 452 uses the meta-framework "avifile" to decode movies \,
+which itself has a plugin system to use ffmpeg \, vorbis \, w32-dlls
+\, ... to decode videos;
+#X text 73 507 available on linux;
+#X text 50 494 quicktime4linux (gem_filmQT4L);
+#X text 73 522 uses libquicktime/lqt for decoding;
+#X text 473 262 available on linux (probably also on OSX and W32);
+#X text 473 277 uses Gmerlin-avdecoder to decode lots of formats;
+#X text 449 304 MPEG3 (gem_filmMPEG3);
+#X text 473 317 available on linux;
+#X text 473 331 should be able to decode various MPEG-formats (e.g.
+MPEG-2-Video and MPEG-2-transportstreams);
+#X text 473 380 available on linux;
+#X text 473 394 uses an old \, buggy (and no longer developed) library
+to decode MPEG-streams;
+#X text 450 365 MPEG (gem_filmMPEG1);
+#X text 450 424 Darwin (gem_filmDarwin);
+#X text 473 439 available on OS-X;
+#X text 450 484 test (gem_TEST);
+#X text 473 497 available on ALL platforms;
+#X text 473 512 outputs test images rather than decoding real media
+files;
+#X text 270 194 available film decoding plugins;
+#X text 260 210 (recommended plugins are highlighted);
+#X text 474 452 an alternative implementation of the QuickTime plugin
+for OS-X only;
+#X restore 294 26 pd :: FORMATS;
+#X obj 22 171 pix_film;
+#X msg 39 133 loader foo;
+#N canvas 0 50 450 300 gemwin 0;
+#X obj 132 136 gemwin;
+#X obj 67 89 outlet;
+#X obj 67 10 inlet;
+#X msg 67 70 set destroy;
+#X msg 132 112 create \, 1;
+#X msg 198 112 destroy;
+#X msg 156 71 set create;
+#X obj 67 41 route create;
+#X connect 2 0 7 0;
+#X connect 3 0 1 0;
+#X connect 4 0 0 0;
+#X connect 5 0 0 0;
+#X connect 6 0 1 0;
+#X connect 7 0 3 0;
+#X connect 7 0 4 0;
+#X connect 7 1 6 0;
+#X connect 7 1 5 0;
+#X restore 119 42 pd gemwin;
+#X msg 120 6 create;
+#X obj 22 226 pix_texture;
+#X obj 22 199 pix_mean_color;
+#X obj 97 219 t l l;
+#X floatatom 137 271 3 0 0 3 R - -;
+#X floatatom 163 271 3 0 0 3 G - -;
+#X floatatom 189 272 3 0 0 3 B - -;
+#X obj 125 240 unpack 0 0 0;
+#X obj 294 7 declare -path lib;
+#X obj 171 104 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array bass-drum 8 float 3;
+#A 0 32.4992 48.9284 26.4281 0 63.5711 25.7143 85.7142 4.28617;
+#X coords 0 100 8 0 200 140 1 0 0;
+#X restore 302 80 graph;
+#X obj 158 183 f;
+#X obj 188 184 + 1;
+#X obj 158 204 % 8;
+#X obj 302 220 hradio 25 1 0 8 empty empty empty 0 -8 0 10 -262144
+-1 -1 3;
+#X obj 321 453 noteout 10;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array bass 8 float 3;
+#A 0 32.1429 16.4286 38.2143 56.4286 31.0714 51.0711 26.4286 39.2857
+;
+#X coords 0 100 8 0 200 140 1 0 0;
+#X restore 737 77 graph;
+#X obj 737 217 hradio 25 1 0 8 empty empty empty 0 -8 0 10 -262144
+-1 -1 3;
+#X obj 302 271 genProb bass-drum 35;
+#X obj 611 33 pgmout 2;
+#X floatatom 610 8 5 0 0 0 - - -;
+#X obj 760 451 noteout 2;
+#X obj 737 271 genProb bass 30;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array snare 8 float 3;
+#A 0 46.0714 30 44.2855 62.5 55.3571 25.7143 51.4282 4.28617;
+#X coords 0 100 8 0 200 140 1 0 0;
+#X restore 516 79 graph;
+#X obj 516 219 hradio 25 1 0 8 empty empty empty 0 -8 0 10 -262144
+-1 -1 3;
+#X obj 535 446 noteout 10;
+#X obj 516 273 genProb snare 42;
+#X text 410 4 pgmout 2 connected to number 29;
+#X obj 302 392 makenote 100 250;
+#X obj 736 382 makenote 100 250;
+#X obj 516 382 makenote 100 250;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array guitar 8 float 3;
+#A 0 65 89.9999 16.4293 63.9286 75 40.3582 58.9296 85.7146;
+#X coords 0 100 8 0 200 140 1 0 0;
+#X restore 948 77 graph;
+#X obj 948 216 hradio 25 1 0 8 empty empty empty 0 -8 0 10 -262144
+-1 -1 3;
+#X obj 964 452 noteout 2;
+#X obj 948 273 genProb guitar 42;
+#X obj 947 386 makenote 100 250;
+#X obj 160 328 + 250;
+#X obj 258 328 + 250;
+#X obj 208 328 + 250;
+#X obj 150 303 * 200;
+#X obj 194 302 * 200;
+#X obj 242 302 * 200;
+#X obj 243 143 -;
+#X obj 171 146 metro 200;
+#X floatatom 208 95 5 0 0 0 - - -;
+#X obj 260 101 * 40;
+#X obj 38 285 +;
+#X obj 66 286 +;
+#X obj 98 286 / 3;
+#X text 188 77 Set to 200;
+#X obj 22 252 rectangle 16 9;
+#X msg 189 25 dimen 600 800;
+#X connect 0 0 7 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 3 0 7 0;
+#X connect 4 0 7 0;
+#X connect 5 0 4 0;
+#X connect 7 0 12 0;
+#X connect 8 0 7 0;
+#X connect 9 0 10 0;
+#X connect 10 0 9 0;
+#X connect 11 0 60 0;
+#X connect 12 0 11 0;
+#X connect 12 1 13 0;
+#X connect 13 1 17 0;
+#X connect 14 0 49 0;
+#X connect 14 0 56 0;
+#X connect 15 0 50 0;
+#X connect 15 0 56 1;
+#X connect 16 0 51 0;
+#X connect 16 0 57 1;
+#X connect 17 0 14 0;
+#X connect 17 1 15 0;
+#X connect 17 2 16 0;
+#X connect 19 0 53 0;
+#X connect 21 0 22 0;
+#X connect 21 0 23 0;
+#X connect 22 0 21 1;
+#X connect 23 0 24 0;
+#X connect 23 0 27 0;
+#X connect 23 0 34 0;
+#X connect 23 0 42 0;
+#X connect 24 0 28 0;
+#X connect 27 0 32 0;
+#X connect 28 0 38 0;
+#X connect 30 0 29 0;
+#X connect 32 0 39 0;
+#X connect 34 0 36 0;
+#X connect 36 0 40 0;
+#X connect 38 0 25 0;
+#X connect 38 1 25 1;
+#X connect 39 0 31 0;
+#X connect 39 1 31 1;
+#X connect 40 0 35 0;
+#X connect 40 1 35 1;
+#X connect 42 0 44 0;
+#X connect 44 0 45 0;
+#X connect 45 0 43 0;
+#X connect 45 1 43 1;
+#X connect 46 0 38 2;
+#X connect 47 0 45 2;
+#X connect 48 0 40 2;
+#X connect 48 0 39 2;
+#X connect 49 0 46 0;
+#X connect 50 0 48 0;
+#X connect 51 0 47 0;
+#X connect 52 0 53 1;
+#X connect 53 0 21 0;
+#X connect 54 0 52 0;
+#X connect 55 0 52 1;
+#X connect 56 0 57 0;
+#X connect 57 0 58 0;
+#X connect 58 0 55 0;
+#X connect 61 0 9 0;
