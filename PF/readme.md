@@ -1,5 +1,7 @@
 # final individual assignment
 
+* The final project includes the creation of a functional interactive music system, which combines machine listening/learning capabilities (MIR topics) with a generative music algorithms.
+
 For this assignment, I used part of the game I was developing for another project.
 
 I used PD to receive OSC messages from UE4 and play the music.
@@ -10,10 +12,10 @@ I used PD to receive OSC messages from UE4 and play the music.
 Music: Hugo Ferreira
 
 Game Developers: 
-* JosÈ Nuno Amaro Freixo
+* Jos√© Nuno Amaro Freixo
 * Tiago Rodrigues Vieira de Carvalho
-* VÌtor Emanuel Fernandes Magalh„es
+* V√≠tor Emanuel Fernandes Magalh√£es
 * Francisco Teixeira Lopes
-* Matilde Agostinho Moedas Dias Freil„o
-* SÈrgio AntÛnio Dias Salgado
+* Matilde Agostinho Moedas Dias Freil√£o
+* S√©rgio Ant√≥nio Dias Salgado
 
