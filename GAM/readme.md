@@ -9,3 +9,6 @@
 
 ### Note
 I used VirtualMIDISynth as the synthetizer and GEM library to read the video.
+
+On PD, set the GEM library on startup
+
