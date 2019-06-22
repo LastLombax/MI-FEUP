@@ -1,5 +1,7 @@
 # Assignment carried out during the semester of automatic generation of music
 
+For this project, I wanted to generate music from played video in which the music is generated according to the video's information like RGB values of each frame
+
 ## How to use:
 
 * Insert indicated values of the comments in the number boxes
